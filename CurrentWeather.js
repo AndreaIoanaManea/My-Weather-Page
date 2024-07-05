@@ -1,30 +1,24 @@
-//declararea functiei pentru afisarea vremii curente. Apelul se face in alte fisiere.
 function displayCurrentWeather(city) {
-    //generam link-ul serverului , pe baza orasului
-    const currentWeatherEndpoint = getCurrentWeatherEndpoint(city);
+       const currentWeatherEndpoint = getCurrentWeatherEndpoint(city);
 
         fetch(currentWeatherEndpoint)
         .then((response) => response.json())
         .then((data) => {
-        //extragem proprietatile care de intereseaza intr-o constanta
+       
         const { name, dt, main, weather, wind} = data;
 
         const day = getDayOfTheWeek(dt);
         const hours = getHour(dt);
 
-        //rotunjim temperaturile
+     
         const temperature = Math.round(main.temp);
         const realFeel = Math.round (main.feels_like);
 
-        //atentie! weather este un array cu un singur element
-            const weatherDescription = weather[0].description; 
-            const weatherIcon = getWeatherIcon(weather[0].icon);
-            const windSpeed = Math.round(windToKmPerHour(wind.speed));
+        const weatherDescription = weather[0].description; 
+        const weatherIcon = getWeatherIcon(weather[0].icon);
+        const windSpeed = Math.round(windToKmPerHour(wind.speed));
 
 
-    
-
-        //afisam pe ecram informatiile extrase din API
         let currentWeatherContainer = document.querySelector(".current-weather");
         currentWeatherContainer.innerHTML = `
         <div class="px-3">
