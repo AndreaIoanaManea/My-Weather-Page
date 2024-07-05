@@ -1,12 +1,8 @@
 const currentCityTag = document.querySelector(".current-city");
 let currentCity = localStorage.getItem("city");
 
+currentCity="București";
 
-
-    currentCity="București";
-
-
-//actualizam orasul afisat pe ecran
 currentCityTag.innerHTML = currentCity;
 
 
